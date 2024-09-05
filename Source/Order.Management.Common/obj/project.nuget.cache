@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "t0cBBlsdgrg=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Quoc Viet\\Desktop\\Api.OrderManagement\\Source\\Order.Management.Common\\Order.Management.Common.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Quoc Viet\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",
+    "C:\\Users\\Quoc Viet\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Quoc Viet\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "C:\\Users\\Quoc Viet\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Quoc Viet\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

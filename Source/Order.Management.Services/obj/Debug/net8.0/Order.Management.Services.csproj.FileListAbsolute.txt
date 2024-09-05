@@ -1,0 +1,11 @@
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Services\bin\Debug\net8.0\Order.Management.Services.deps.json
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Services\bin\Debug\net8.0\Order.Management.Services.dll
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Services\bin\Debug\net8.0\Order.Management.Services.pdb
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Services\obj\Debug\net8.0\Order.Management.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Services\obj\Debug\net8.0\Order.Management.Services.AssemblyInfoInputs.cache
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Services\obj\Debug\net8.0\Order.Management.Services.AssemblyInfo.cs
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Services\obj\Debug\net8.0\Order.Management.Services.csproj.CoreCompileInputs.cache
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Services\obj\Debug\net8.0\Order.Management.Services.dll
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Services\obj\Debug\net8.0\refint\Order.Management.Services.dll
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Services\obj\Debug\net8.0\Order.Management.Services.pdb
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Services\obj\Debug\net8.0\ref\Order.Management.Services.dll
