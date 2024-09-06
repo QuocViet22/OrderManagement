@@ -430,6 +430,23 @@
           "lib/netstandard2.0/_._": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.AutoHistory/3.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "3.1.0",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.AutoHistory.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.AutoHistory.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore.Design/8.0.8": {
         "type": "package",
         "dependencies": {
@@ -497,6 +514,23 @@
         },
         "runtime": {
           "lib/net8.0/_._": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.UnitOfWork/3.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.AutoHistory": "3.1.1",
+          "Microsoft.EntityFrameworkCore.Relational": "3.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.UnitOfWork.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.UnitOfWork.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Microsoft.Extensions.Caching.Abstractions/8.0.0": {
@@ -888,6 +922,19 @@
         },
         "runtime": {
           "lib/netstandard2.0/Mono.TextTemplating.dll": {}
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.CodeDom/4.4.0": {
@@ -2209,6 +2256,19 @@
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
+    "Microsoft.EntityFrameworkCore.AutoHistory/3.1.1": {
+      "sha512": "AUyDffkoWa8urNm0z2TMX7VxYPal5LuHlirlWpzz7xKFMoSwmqpclz9ODXxmgrHLQ7/yT2Pv9Id0HO59dsKxWw==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.autohistory/3.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.EntityFrameworkCore.AutoHistory.dll",
+        "lib/netstandard2.0/Microsoft.EntityFrameworkCore.AutoHistory.xml",
+        "microsoft.entityframeworkcore.autohistory.3.1.1.nupkg.sha512",
+        "microsoft.entityframeworkcore.autohistory.nuspec"
+      ]
+    },
     "Microsoft.EntityFrameworkCore.Design/8.0.8": {
       "sha512": "MmQAMHdjZR8Iyn/FVQrh9weJQTn0HqtKa3vELS9ffQJat/qXgnTam9M9jqvePphjkYp5Scee+Hy+EJR4nmWmOA==",
       "type": "package",
@@ -2279,6 +2339,19 @@
         "tools/net461/win-x86/ef.exe",
         "tools/netcoreapp2.0/any/ef.dll",
         "tools/netcoreapp2.0/any/ef.runtimeconfig.json"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.UnitOfWork/3.1.0": {
+      "sha512": "JzHpeIljFflhg3TWuro6SlaRR8UJ026PB7RhSg6Z3aNJxxP8x+Mfm+lHpM2lrgw3+T6blPZwxik0lt9lIzW0EQ==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.unitofwork/3.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.EntityFrameworkCore.UnitOfWork.dll",
+        "lib/netstandard2.0/Microsoft.EntityFrameworkCore.UnitOfWork.xml",
+        "microsoft.entityframeworkcore.unitofwork.3.1.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.unitofwork.nuspec"
       ]
     },
     "Microsoft.Extensions.Caching.Abstractions/8.0.0": {
@@ -2922,6 +2995,37 @@
         "lib/netstandard2.0/Mono.TextTemplating.dll",
         "mono.texttemplating.2.2.1.nupkg.sha512",
         "mono.texttemplating.nuspec"
+      ]
+    },
+    "Newtonsoft.Json/12.0.3": {
+      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "type": "package",
+      "path": "newtonsoft.json/12.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.12.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
       ]
     },
     "System.CodeDom/4.4.0": {
@@ -4102,7 +4206,8 @@
     "net8.0": [
       "Microsoft.EntityFrameworkCore.Design >= 8.0.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.8",
-      "Microsoft.EntityFrameworkCore.Tools >= 8.0.8"
+      "Microsoft.EntityFrameworkCore.Tools >= 8.0.8",
+      "Microsoft.EntityFrameworkCore.UnitOfWork >= 3.1.0"
     ]
   },
   "packageFolders": {
@@ -4111,11 +4216,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Quoc Viet\\Desktop\\Api.OrderManagement\\Source\\Order.Management.Entities\\Order.Management.Entities.csproj",
+      "projectUniqueName": "C:\\Users\\Quoc Viet\\Desktop\\OrderManagement\\Source\\Order.Management.Entities\\Order.Management.Entities.csproj",
       "projectName": "Order.Management.Entities",
-      "projectPath": "C:\\Users\\Quoc Viet\\Desktop\\Api.OrderManagement\\Source\\Order.Management.Entities\\Order.Management.Entities.csproj",
+      "projectPath": "C:\\Users\\Quoc Viet\\Desktop\\OrderManagement\\Source\\Order.Management.Entities\\Order.Management.Entities.csproj",
       "packagesPath": "C:\\Users\\Quoc Viet\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Quoc Viet\\Desktop\\Api.OrderManagement\\Source\\Order.Management.Entities\\obj\\",
+      "outputPath": "C:\\Users\\Quoc Viet\\Desktop\\OrderManagement\\Source\\Order.Management.Entities\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Quoc Viet\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4165,6 +4270,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[8.0.8, )"
+          },
+          "Microsoft.EntityFrameworkCore.UnitOfWork": {
+            "target": "Package",
+            "version": "[3.1.0, )"
           }
         },
         "imports": [

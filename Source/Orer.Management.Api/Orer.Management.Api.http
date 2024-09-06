@@ -1,6 +1,0 @@
-@Orer.Management.Api_HostAddress = http://localhost:5111
-
-GET {{Orer.Management.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

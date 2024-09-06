@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Orer.Management.Api.Models;
 
 namespace Orer.Management.Api.Data;
 
-public partial class DbOrderManagementSqlContext : DbContext
+public partial class OrderManagementDbContext : DbContext
 {
-    public DbOrderManagementSqlContext()
+    public OrderManagementDbContext()
     {
     }
 
-    public DbOrderManagementSqlContext(DbContextOptions<DbOrderManagementSqlContext> options)
+    public OrderManagementDbContext(DbContextOptions<OrderManagementDbContext> options)
         : base(options)
     {
     }

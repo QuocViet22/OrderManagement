@@ -1,9 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Quoc Viet\\Desktop\\Api.OrderManagement\\Source\\Orer.Management.Api\\",
+  "WorkspaceRootPath": "C:\\Users\\Quoc Viet\\Desktop\\OrderManagement\\Source\\Orer.Management.Api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CCD6530B-C369-48EE-8812-1B56A5C34B9E}|..\\Order.Management.Entities\\Order.Management.Entities.csproj|c:\\users\\quoc viet\\desktop\\api.ordermanagement\\source\\order.management.entities\\data\\dbordermanagementsqlcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A81114F8-9503-4663-B9EB-A15828E319FC}|Orer.Management.Api.csproj|c:\\users\\quoc viet\\desktop\\ordermanagement\\source\\orer.management.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A81114F8-9503-4663-B9EB-A15828E319FC}|Orer.Management.Api.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DbOrderManagementSqlContext.cs",
-              "DocumentMoniker": "C:\\Users\\Quoc Viet\\Desktop\\Api.OrderManagement\\Source\\Order.Management.Entities\\Data\\DbOrderManagementSqlContext.cs",
-              "RelativeDocumentMoniker": "..\\Order.Management.Entities\\Data\\DbOrderManagementSqlContext.cs",
-              "ToolTip": "C:\\Users\\Quoc Viet\\Desktop\\Api.OrderManagement\\Source\\Order.Management.Entities\\Data\\DbOrderManagementSqlContext.cs",
-              "RelativeToolTip": "..\\Order.Management.Entities\\Data\\DbOrderManagementSqlContext.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\Quoc Viet\\Desktop\\OrderManagement\\Source\\Orer.Management.Api\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\Quoc Viet\\Desktop\\OrderManagement\\Source\\Orer.Management.Api\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-05T16:13:48.775Z",
+              "WhenOpened": "2024-09-06T13:21:20.062Z",
               "EditorCaption": ""
             }
           ]

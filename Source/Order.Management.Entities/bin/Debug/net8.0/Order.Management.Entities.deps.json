@@ -10,7 +10,8 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "8.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8",
-          "Microsoft.EntityFrameworkCore.Tools": "8.0.8"
+          "Microsoft.EntityFrameworkCore.Tools": "8.0.8",
+          "Microsoft.EntityFrameworkCore.UnitOfWork": "3.1.0"
         },
         "runtime": {
           "Order.Management.Entities.dll": {}
@@ -372,6 +373,18 @@
         }
       },
       "Microsoft.EntityFrameworkCore.Analyzers/8.0.8": {},
+      "Microsoft.EntityFrameworkCore.AutoHistory/3.1.1": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.8",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.AutoHistory.dll": {
+            "assemblyVersion": "3.1.1.0",
+            "fileVersion": "3.1.1.0"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore.Design/8.0.8": {
         "dependencies": {
           "Humanizer.Core": "2.14.1",
@@ -414,6 +427,18 @@
       "Microsoft.EntityFrameworkCore.Tools/8.0.8": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "8.0.8"
+        }
+      },
+      "Microsoft.EntityFrameworkCore.UnitOfWork/3.1.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.AutoHistory": "3.1.1",
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.8"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.UnitOfWork.dll": {
+            "assemblyVersion": "3.1.0.0",
+            "fileVersion": "3.1.0.0"
+          }
         }
       },
       "Microsoft.Extensions.Caching.Abstractions/8.0.0": {
@@ -656,6 +681,14 @@
           "lib/netstandard2.0/Mono.TextTemplating.dll": {
             "assemblyVersion": "2.2.0.0",
             "fileVersion": "2.2.1.1"
+          }
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.3.23909"
           }
         }
       },
@@ -1033,6 +1066,13 @@
       "path": "microsoft.entityframeworkcore.analyzers/8.0.8",
       "hashPath": "microsoft.entityframeworkcore.analyzers.8.0.8.nupkg.sha512"
     },
+    "Microsoft.EntityFrameworkCore.AutoHistory/3.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AUyDffkoWa8urNm0z2TMX7VxYPal5LuHlirlWpzz7xKFMoSwmqpclz9ODXxmgrHLQ7/yT2Pv9Id0HO59dsKxWw==",
+      "path": "microsoft.entityframeworkcore.autohistory/3.1.1",
+      "hashPath": "microsoft.entityframeworkcore.autohistory.3.1.1.nupkg.sha512"
+    },
     "Microsoft.EntityFrameworkCore.Design/8.0.8": {
       "type": "package",
       "serviceable": true,
@@ -1060,6 +1100,13 @@
       "sha512": "sha512-wjDNbLJk86QpZt2JxJuNVzpBKIbEQsgcJYHGeIFTBuK6NEgvJvyxgneg059HfSJmTVdInZ61lTO4sJGCfFr7+w==",
       "path": "microsoft.entityframeworkcore.tools/8.0.8",
       "hashPath": "microsoft.entityframeworkcore.tools.8.0.8.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.UnitOfWork/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JzHpeIljFflhg3TWuro6SlaRR8UJ026PB7RhSg6Z3aNJxxP8x+Mfm+lHpM2lrgw3+T6blPZwxik0lt9lIzW0EQ==",
+      "path": "microsoft.entityframeworkcore.unitofwork/3.1.0",
+      "hashPath": "microsoft.entityframeworkcore.unitofwork.3.1.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/8.0.0": {
       "type": "package",
@@ -1221,6 +1268,13 @@
       "sha512": "sha512-KZYeKBET/2Z0gY1WlTAK7+RHTl7GSbtvTLDXEZZojUdAPqpQNDL6tHv7VUpqfX5VEOh+uRGKaZXkuD253nEOBQ==",
       "path": "mono.texttemplating/2.2.1",
       "hashPath": "mono.texttemplating.2.2.1.nupkg.sha512"
+    },
+    "Newtonsoft.Json/12.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "path": "newtonsoft.json/12.0.3",
+      "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
     },
     "System.CodeDom/4.4.0": {
       "type": "package",

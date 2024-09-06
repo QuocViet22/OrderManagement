@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interface\" />
-    <Folder Include="Service\" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <ProjectReference Include="..\Order.Management.Common\Order.Management.Common.csproj" />
+    <ProjectReference Include="..\Order.Management.Entities\Order.Management.Entities.csproj" />
   </ItemGroup>
 
 </Project>

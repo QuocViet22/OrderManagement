@@ -7,14 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Helper\" />
-    <Folder Include="Setting\" />
     <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Order.Management.Entities\Order.Management.Entities.csproj" />
   </ItemGroup>
 
 </Project>
