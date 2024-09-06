@@ -1,0 +1,38 @@
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Entities\bin\Debug\net8.0\Order.Management.Entities.deps.json
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Entities\bin\Debug\net8.0\Order.Management.Entities.runtimeconfig.json
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Entities\bin\Debug\net8.0\Order.Management.Entities.dll
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Entities\bin\Debug\net8.0\Order.Management.Entities.pdb
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.csproj.AssemblyReference.cache
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.AssemblyInfoInputs.cache
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.AssemblyInfo.cs
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.dll
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\refint\Order.Management.Entities.dll
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.pdb
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.genruntimeconfig.cache
+C:\Users\Quoc Viet\Desktop\Api.OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\ref\Order.Management.Entities.dll
+C:\Users\Quoc Viet\Desktop\OrderManagement\Source\Order.Management.Entities\bin\Debug\net8.0\Order.Management.Entities.deps.json
+C:\Users\Quoc Viet\Desktop\OrderManagement\Source\Order.Management.Entities\bin\Debug\net8.0\Order.Management.Entities.runtimeconfig.json
+C:\Users\Quoc Viet\Desktop\OrderManagement\Source\Order.Management.Entities\bin\Debug\net8.0\Order.Management.Entities.dll
+C:\Users\Quoc Viet\Desktop\OrderManagement\Source\Order.Management.Entities\bin\Debug\net8.0\Order.Management.Entities.pdb
+C:\Users\Quoc Viet\Desktop\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.csproj.AssemblyReference.cache
+C:\Users\Quoc Viet\Desktop\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Quoc Viet\Desktop\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.AssemblyInfoInputs.cache
+C:\Users\Quoc Viet\Desktop\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.AssemblyInfo.cs
+C:\Users\Quoc Viet\Desktop\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Quoc Viet\Desktop\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.sourcelink.json
+C:\Users\Quoc Viet\Desktop\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.dll
+C:\Users\Quoc Viet\Desktop\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\refint\Order.Management.Entities.dll
+C:\Users\Quoc Viet\Desktop\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.pdb
+C:\Users\Quoc Viet\Desktop\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.genruntimeconfig.cache
+C:\Users\Quoc Viet\Desktop\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\ref\Order.Management.Entities.dll
+D:\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.csproj.AssemblyReference.cache
+D:\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.GeneratedMSBuildEditorConfig.editorconfig
+D:\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.AssemblyInfoInputs.cache
+D:\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.AssemblyInfo.cs
+D:\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.csproj.CoreCompileInputs.cache
+D:\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.sourcelink.json
+D:\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.dll
+D:\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\refint\Order.Management.Entities.dll
+D:\OrderManagement\Source\Order.Management.Entities\obj\Debug\net8.0\Order.Management.Entities.pdb

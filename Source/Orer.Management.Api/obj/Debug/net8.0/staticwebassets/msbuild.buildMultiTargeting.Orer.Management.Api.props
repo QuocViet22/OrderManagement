@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Orer.Management.Api.props" />
+</Project>

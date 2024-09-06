@@ -1,0 +1,12 @@
+[
+  {
+    "ContainingType": "Orer.Management.Api.Controllers.AccountController",
+    "Method": "GetAllAccounts",
+    "RelativePath": "api/Account/GetAllAccounts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
