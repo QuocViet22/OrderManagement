@@ -10,5 +10,9 @@ public partial class Account
 
     public Guid RoleId { get; set; }
 
+    public Guid EmployeeId { get; set; }
+
+    public virtual Employee Employee { get; set; } = null!;
+
     public virtual Role Role { get; set; } = null!;
 }
