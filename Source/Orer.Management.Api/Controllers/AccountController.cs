@@ -83,13 +83,11 @@ namespace Orer.Management.Api.Controllers
                 if (roleClaim == "Admin")
                 {
                     // Return all records for Admin role
-                    //var records = RecordRepository.Records.ToList();
                     return Ok("Admin");
                 }
                 else if (roleClaim == "Employee")
                 {
                     // Return filtered records for Employee role
-                    //var records = RecordRepository.Records.Where(r => r.Role == "Employee").ToList();
                     return Ok("Employee");
                 }
 

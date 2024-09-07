@@ -74,10 +74,10 @@ namespace OrderManagement.Services.Service
         {
             var claims = new[]
 {
-                    new Claim("UserName", existedAccount.UserName),
-                    new Claim("Role", existedAccount.Role.Name),
-                    new Claim("RoleKey", existedAccount.Role.Key),
-                    new Claim(JwtRegisteredClaimNames.Sub, "user_id")
+                    new Claim(HelperConstants.UserName, existedAccount.UserName),
+                    new Claim(HelperConstants.Role, existedAccount.Role.Name),
+                    new Claim(HelperConstants.RoleKey, existedAccount.Role.Key),
+                    new Claim(JwtRegisteredClaimNames.Sub, HelperConstants.UserId)
                 };
 
             var keyBytes = Encoding.UTF8.GetBytes(ApplicationOptions.JwtConfig.Secret);
