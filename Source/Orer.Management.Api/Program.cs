@@ -1,10 +1,13 @@
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualBasic;
 using OrderManagement.Common.Helper;
+using OrderManagement.Common.Models.Constants;
 using OrderManagement.Common.Setting;
 using OrerManagement.Api;
 using OrerManagement.Api.Data;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 // Add services to the container.
 builder.Services.BindingConfiguration(builder.Configuration);
@@ -16,18 +19,27 @@ builder.Services.AddAutoMapper(typeof(Program));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// Add Authentication
+builder.Services.AddAuthentication("JWTAuth")
+     .AddJwtBearer("JWTAuth", options =>
+     {
+
+         var keyBytes = Encoding.UTF8.GetBytes(HelperConstants.Secret);
+         var key = new SymmetricSecurityKey(keyBytes);
+
+         options.TokenValidationParameters = new TokenValidationParameters()
+         {
+             ValidIssuer = HelperConstants.Issuer,
+             ValidAudience = HelperConstants.Audience,
+             IssuerSigningKey = key
+         };
+     });
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
