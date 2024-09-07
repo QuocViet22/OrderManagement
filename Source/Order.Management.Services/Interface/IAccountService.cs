@@ -1,4 +1,5 @@
-﻿using OrerManagement.Api.Models;
+﻿using OrderManagement.Entities.Models.RequestModel;
+using OrderManagement.Entities.Models.ResponseModel;
 
 namespace OrderManagement.Services.Interface
 {
@@ -8,9 +9,10 @@ namespace OrderManagement.Services.Interface
     public interface IAccountService
     {
         /// <summary>
-        /// Get all accounts
+        /// Get authentication for account
         /// </summary>
+        /// <param name="accountInfoDto"></param>
         /// <returns></returns>
-        public Task<Account> GetAllAccounts();
+        public Task<ResAccountInfoDto> GetAuthentication(ReqAccountInfoDto accountInfoDto);
     }
 }

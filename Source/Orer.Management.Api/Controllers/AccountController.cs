@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using OrderManagement.Entities.Models.RequestModel;
 using OrderManagement.Services.Interface;
 
 namespace Orer.Management.Api.Controllers
@@ -27,14 +29,27 @@ namespace Orer.Management.Api.Controllers
             _accountService = accountService;
         }
 
-        [HttpGet("GetAllAccounts")]
-        public async Task<IActionResult> GetAllAccounts()
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(ReqAccountInfoDto accountInfoDto)
         {
             try
             {
-                _logger.LogInformation("");
-                var res = await _accountService.GetAllAccounts();
-                return Ok(res);
+                _logger.LogInformation("UserName ===> {0}", accountInfoDto.UserName);
+                return Ok(await _accountService.GetAuthentication(accountInfoDto));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("Test")]
+        [Authorize]
+        public async Task<IActionResult> Test()
+        {
+            try
+            {
+                return Ok("Ok");
             }
             catch (Exception ex)
             {
