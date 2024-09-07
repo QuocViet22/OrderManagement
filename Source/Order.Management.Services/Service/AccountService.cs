@@ -2,10 +2,12 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using OrderManagement.Common.Models.Constants;
+using OrderManagement.Common.Setting;
 using OrderManagement.Entities.Models.RequestModel;
 using OrderManagement.Entities.Models.ResponseModel;
 using OrderManagement.Services.Interface;
 using OrerManagement.Api.Data;
+using OrerManagement.Api.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -44,33 +46,19 @@ namespace OrderManagement.Services.Service
         {
             try
             {
-                var claims = new[]
+                var result = new ResAccountInfoDto();
+                var accountRepo = _unitOfWork.GetRepository<Account>();
+                var existedAccount = await accountRepo.GetFirstOrDefaultAsync(
+                        predicate: x => x.UserName == accountInfoDto.UserName && x.Password == accountInfoDto.Password
+                    );
+
+                if (existedAccount != null)
                 {
-                    new Claim("UserName", accountInfoDto.UserName),
-                    new Claim(JwtRegisteredClaimNames.Sub, "user_id")
-                };
+                    var accessToken = GetJwtToken(existedAccount.UserName);
+                    result = new ResAccountInfoDto(existedAccount.UserName, accessToken);
+                }
 
-                var keyBytes = Encoding.UTF8.GetBytes(HelperConstants.Secret);
-
-                var key = new SymmetricSecurityKey(keyBytes);
-
-                var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-                var token = new JwtSecurityToken(
-                    HelperConstants.Audience,
-                    HelperConstants.Issuer,
-                    claims,
-                    notBefore: DateTime.Now,
-                    expires: DateTime.Now.AddHours(1),
-                    signingCredentials);
-
-                var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-
-                return new ResAccountInfoDto 
-                { 
-                    UserName = accountInfoDto.UserName,
-                    AccessToken = tokenString
-                };
+                return result;
             }
             catch (Exception ex)
             {
@@ -78,5 +66,33 @@ namespace OrderManagement.Services.Service
                 throw;
             }
         }
+
+        #region
+        private string GetJwtToken(string userName)
+        {
+            var claims = new[]
+{
+                    new Claim("UserName", userName),
+                    new Claim(JwtRegisteredClaimNames.Sub, "user_id")
+                };
+
+            var keyBytes = Encoding.UTF8.GetBytes(ApplicationOptions.JwtConfig.Secret);
+
+            var key = new SymmetricSecurityKey(keyBytes);
+
+            var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                ApplicationOptions.JwtConfig.Audience,
+                ApplicationOptions.JwtConfig.Issuer,
+                claims,
+                notBefore: DateTime.Now,
+                expires: DateTime.Now.AddHours(1),
+                signingCredentials);
+
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+            return tokenString;
+        }
+        #endregion
     }
 }

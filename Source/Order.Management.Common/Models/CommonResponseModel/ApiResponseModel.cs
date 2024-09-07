@@ -1,4 +1,4 @@
-﻿namespace OrderManagement.Common.Models.ResponseModel
+﻿namespace OrderManagement.Common.Models.CommonResponseModel
 {
     /// <summary>
     /// Define result model to return to client

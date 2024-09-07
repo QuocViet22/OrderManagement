@@ -24,13 +24,13 @@ builder.Services.AddAuthentication("JWTAuth")
      .AddJwtBearer("JWTAuth", options =>
      {
 
-         var keyBytes = Encoding.UTF8.GetBytes(HelperConstants.Secret);
+         var keyBytes = Encoding.UTF8.GetBytes(ApplicationOptions.JwtConfig.Secret);
          var key = new SymmetricSecurityKey(keyBytes);
 
          options.TokenValidationParameters = new TokenValidationParameters()
          {
-             ValidIssuer = HelperConstants.Issuer,
-             ValidAudience = HelperConstants.Audience,
+             ValidIssuer = ApplicationOptions.JwtConfig.Issuer,
+             ValidAudience = ApplicationOptions.JwtConfig.Audience,
              IssuerSigningKey = key
          };
      });
