@@ -2,8 +2,10 @@
 {
     public class HelperConstants
     {
-        public const string Audience = "https://localhost:44317/";
-        public const string Issuer = "https://localhost:44317/";
-        public const string Secret = "hasvasasasjk_hfwf_JBascscascascf";
+        protected HelperConstants() { }
+        public const string UserName = "UserName";
+        public const string Role = "Role";
+        public const string RoleKey = "RoleKey";
+        public const string UserId = "user_id";
     }
 }

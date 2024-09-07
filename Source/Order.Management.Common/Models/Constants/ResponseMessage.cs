@@ -6,7 +6,7 @@
     public class ResponseMessage
     {
         protected ResponseMessage() { }
-        public const string SuccessfulMsg = "Successful.";
-        public const string FailMsg = "Fail.";
+        public const string SuccessfulLoginMsg = "Đăng nhập thành công!";
+        public const string FailLoginMsg = "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin!";
     }
 }
