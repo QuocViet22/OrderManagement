@@ -5,6 +5,7 @@ using OrderManagement.Common.Models.CommonResponseModel;
 using OrderManagement.Entities.Models.RequestModel;
 using OrderManagement.Entities.Models.ResponseModel;
 using OrderManagement.Services.Interface;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Orer.Management.Api.Controllers
 {
@@ -67,7 +68,32 @@ namespace Orer.Management.Api.Controllers
         {
             try
             {
-                return Ok("Ok");
+                // Extract the JWT token from the request header
+                var token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+
+                if (string.IsNullOrEmpty(token))
+                {
+                    return Unauthorized("JWT token is missing.");
+                }
+
+                var handler = new JwtSecurityTokenHandler();
+                var jwtToken = handler.ReadJwtToken(token);
+                var roleClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "RoleKey")?.Value;
+
+                if (roleClaim == "Admin")
+                {
+                    // Return all records for Admin role
+                    //var records = RecordRepository.Records.ToList();
+                    return Ok("Admin");
+                }
+                else if (roleClaim == "Employee")
+                {
+                    // Return filtered records for Employee role
+                    //var records = RecordRepository.Records.Where(r => r.Role == "Employee").ToList();
+                    return Ok("Employee");
+                }
+
+                return Forbid("Unauthorized access.");
             }
             catch (Exception ex)
             {
