@@ -1,4 +1,5 @@
 ﻿using Arch.EntityFrameworkCore.UnitOfWork;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using OrderManagement.Common.Models.Constants;
@@ -48,12 +49,14 @@ namespace OrderManagement.Services.Service
                 var result = new ResAccountInfoDto();
                 var accountRepo = _unitOfWork.GetRepository<Account>();
                 var existedAccount = await accountRepo.GetFirstOrDefaultAsync(
-                        predicate: x => x.UserName == accountInfoDto.UserName && x.Password == accountInfoDto.Password
+                        predicate: x => x.UserName == accountInfoDto.UserName && x.Password == accountInfoDto.Password,
+                        include: i => i
+                            .Include(o => o.Role)
                     );
 
                 if (existedAccount != null)
                 {
-                    var accessToken = GetJwtToken(existedAccount.UserName);
+                    var accessToken = GetJwtToken(existedAccount);
                     result = new ResAccountInfoDto(existedAccount.UserName, accessToken);
                 }
 
@@ -67,11 +70,13 @@ namespace OrderManagement.Services.Service
         }
 
         #region
-        private string GetJwtToken(string userName)
+        private string GetJwtToken(Account existedAccount)
         {
             var claims = new[]
 {
-                    new Claim("UserName", userName),
+                    new Claim("UserName", existedAccount.UserName),
+                    new Claim("Role", existedAccount.Role.Name),
+                    new Claim("RoleKey", existedAccount.Role.Key),
                     new Claim(JwtRegisteredClaimNames.Sub, "user_id")
                 };
 
