@@ -1,4 +1,4 @@
-﻿namespace OrerManagement.Api.Models;
+﻿namespace OrderManagement.Entities.Entities;
 
 public partial class OrderLog
 {

@@ -1,10 +1,8 @@
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualBasic;
 using OrderManagement.Common.Helper;
-using OrderManagement.Common.Models.Constants;
 using OrderManagement.Common.Setting;
+using OrderManagement.Entities.Entities;
 using OrerManagement.Api;
-using OrerManagement.Api.Data;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
