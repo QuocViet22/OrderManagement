@@ -61,8 +61,15 @@ INSERT INTO [DB_ORDER_MANAGEMENT_SQL].[Account]
            ,[RoleId]
            ,[EmployeeId])
      VALUES
-           ('Employee2'
-           ,'Employee2'
-           ,'3455252F-5A82-409B-8323-13214B3727E2'
-           ,'830EF51E-B640-4D78-827F-593A01BE051B')
+           ('Admin'
+           ,'Admin'
+           ,'21CF6E2B-E041-4EAA-A37B-4364E7261942'
+           ,'EA2B955F-73F9-45E6-B343-E69AEE1D0EE5')
 GO
+
+select * from [DB_ORDER_MANAGEMENT_SQL].Role;
+select * from [DB_ORDER_MANAGEMENT_SQL].Employee;
+
+select * from [DB_ORDER_MANAGEMENT_SQL].Account;
+
+delete [DB_ORDER_MANAGEMENT_SQL].Account where Id = '90DC1D4A-A825-416B-AE00-0744EB0ADF54'

@@ -7,8 +7,9 @@
     {
         protected ResponseMessage() { }
         public const string SuccessfulLoginMsg = "Đăng nhập thành công!";
-        public const string FailLoginMsg = "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin!";
+        public const string FailedLoginMsg = "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin!";
         public const string SuccessfulMsg = "Thành công!";
-        public const string FailAuthorizeToken = "Thông tin access token không hợp lệ!";
+        public const string FailedGetEmployeeDataMsg = "Không tìm thấy thông tin nhân viên!";
+        public const string FailedAuthorizeToken = "Thông tin access token không hợp lệ!";
     }
 }

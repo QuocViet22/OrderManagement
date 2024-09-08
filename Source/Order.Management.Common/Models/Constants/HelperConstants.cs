@@ -10,5 +10,14 @@
         public const string EmployeeName = "EmployeeName";
         public const string AdminRoleName = "admin";
         public const string EmployeeRoleName = "employee";
+        
+        /// <summary>
+        /// Constant order status
+        /// </summary>
+        public enum OrderStatus {
+            New,
+            Active,
+            Done
+        }
     }
 }

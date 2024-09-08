@@ -45,7 +45,7 @@ namespace Orer.Management.Api.Controllers
                 {
                     return StatusCode(500, new ApiResponseModel<string>()
                     {
-                        Message = ResponseMessage.FailLoginMsg,
+                        Message = ResponseMessage.FailedLoginMsg,
                     });
                 }
 
