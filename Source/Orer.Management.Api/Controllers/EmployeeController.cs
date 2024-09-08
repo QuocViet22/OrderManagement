@@ -4,7 +4,7 @@ using OrderManagement.Common.Models.Constants;
 using OrderManagement.Common.Models.CommonResponseModel;
 using OrderManagement.Entities.Models.ResponseModel;
 using OrderManagement.Services.Interface;
-using System.IdentityModel.Tokens.Jwt;
+using OrderManagement.Common.Helper;
 
 namespace Orer.Management.Api.Controllers
 {
@@ -46,17 +46,14 @@ namespace Orer.Management.Api.Controllers
                     return Unauthorized(ResponseMessage.FailAuthorizeToken);
                 }
 
-                var handler = new JwtSecurityTokenHandler();
-                var jwtToken = handler.ReadJwtToken(token);
-                var roleName = jwtToken.Claims.FirstOrDefault(c => c.Type == HelperConstants.RoleKey)?.Value;
-                var employeeName = jwtToken.Claims.FirstOrDefault(c => c.Type == HelperConstants.EmployeeName)?.Value;
+                var tokenInfo = JwtHandler.GetInfoFromToken(token);
 
-                if (roleName == null || employeeName == null)
+                if (tokenInfo.RoleName == null || tokenInfo.EmployeeName == null)
                 {
                     return BadRequest(ResponseMessage.FailAuthorizeToken);
                 }
 
-                var result = await _employeeService.GetListEmployee(roleName, employeeName);
+                var result = await _employeeService.GetListEmployee(tokenInfo.RoleName, tokenInfo.EmployeeName);
                 var response = new ApiResponseModel<IEnumerable<ResEmployeeInfoDto>>(ResponseMessage.SuccessfulMsg, result);
                 return Ok(response);
             }
