@@ -60,7 +60,7 @@ namespace OrderManagement.Services.Service
 
                 var firstOrderLogData = new ReqOrderLogInfoDto()
                 {
-                    Content = $"{employeeData.Name} tạo thành công đơn hàng",
+                    Content = $"{employeeData.Name} {HelperConstants.CreateNewOrderLogMsg}",
                     CreateBy = $"{employeeData.Name}",
                     CreatedOn = DateTime.Now,
                 };
