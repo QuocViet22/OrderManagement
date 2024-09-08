@@ -43,14 +43,14 @@ namespace Orer.Management.Api.Controllers
 
                 if (string.IsNullOrEmpty(token))
                 {
-                    return Unauthorized(ResponseMessage.FailAuthorizeToken);
+                    return Unauthorized(ResponseMessage.FailedAuthorizeToken);
                 }
 
                 var tokenInfo = JwtHandler.GetInfoFromToken(token);
 
                 if (tokenInfo.RoleName == null || tokenInfo.EmployeeName == null)
                 {
-                    return BadRequest(ResponseMessage.FailAuthorizeToken);
+                    return BadRequest(ResponseMessage.FailedAuthorizeToken);
                 }
 
                 var result = await _employeeService.GetListEmployee(tokenInfo.RoleName, tokenInfo.EmployeeName);

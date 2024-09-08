@@ -66,7 +66,7 @@ CREATE TABLE [DB_ORDER_MANAGEMENT_SQL].[OrderLog] (
 	[Id] [uniqueidentifier] DEFAULT NEWID() NOT NULL,
 	[Content] [nvarchar](MAX) NOT NULL,
 	[CreateBy] [nvarchar] (250) NOT NULL,
-	[CreatedOn] [date] NOT NULL,
+	[CreatedOn] [datetime] NOT NULL,
 	[OrderId] [uniqueidentifier] NOT NULL
 	CONSTRAINT [PK_OrderLog] PRIMARY KEY CLUSTERED
 (

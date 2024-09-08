@@ -8,7 +8,7 @@ public partial class OrderLog
 
     public string CreateBy { get; set; } = null!;
 
-    public DateOnly CreatedOn { get; set; }
+    public DateTime CreatedOn { get; set; }
 
     public Guid OrderId { get; set; }
 
