@@ -13,5 +13,12 @@ namespace OrderManagement.Services.Interface
         /// <param name="reqOrderInfoDto"></param>
         /// <returns></returns>
         public Task<string> AddNewOrder(ReqOrderInfoDto reqOrderInfoDto);
+
+        /// <summary>
+        /// Update order
+        /// </summary>
+        /// <param name="reqOrderInfoDto"></param>
+        /// <returns></returns>
+        public Task<string> UpdateOrder(ReqOrderInfoDto reqOrderInfoDto);
     }
 }

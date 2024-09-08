@@ -1,6 +1,7 @@
 ﻿using Arch.EntityFrameworkCore.UnitOfWork;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
+using OrderManagement.Common.Helper;
 using OrderManagement.Common.Models.Constants;
 using OrderManagement.Entities.Entities;
 using OrderManagement.Entities.Models.RequestModel;
@@ -56,7 +57,7 @@ namespace OrderManagement.Services.Service
                     );
 
                 if (employeeData == null)
-                    return ResponseMessage.FailedGetEmployeeDataMsg;
+                    return ResponseMessage.FailedGetDataMsg;
 
                 var firstOrderLogData = new ReqOrderLogInfoDto()
                 {
@@ -65,11 +66,54 @@ namespace OrderManagement.Services.Service
                     CreatedOn = DateTime.Now,
                 };
 
-                reqOrderInfoDto.Status = HelperConstants.OrderStatus.New.ToString();
+                reqOrderInfoDto.Status = OrderStatus.New.ToString();
                 var orderLogData = _mapper.Map<OrderLog>(firstOrderLogData);
                 var orderData = _mapper.Map<Order>(reqOrderInfoDto);
                 orderData.OrderLogs.Add(orderLogData);
                 orderRepo.Insert(orderData);
+                _unitOfWork.SaveChanges();
+                return ResponseMessage.SuccessfulMsg;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while get data from function AddNewOrder()");
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Update order
+        /// </summary>
+        /// <param name="reqOrderInfoDto"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<string> UpdateOrder(ReqOrderInfoDto reqOrderInfoDto)
+        {
+            try
+            {
+                var orderRepo = _unitOfWork.GetRepository<Order>();
+                var employeeRepo = _unitOfWork.GetRepository<Employee>();
+
+                var orderData = await orderRepo.GetFirstOrDefaultAsync(
+                        predicate: x => x.Id == reqOrderInfoDto.OrderId
+                    );
+
+                if (orderData == null)
+                    return ResponseMessage.FailedGetDataMsg;
+
+                switch (reqOrderInfoDto.Action)
+                {
+                    case HelperConstants.ActiveAction:
+                        orderData.Status = OrderStatus.Active.ToString();
+                        break;
+                    case HelperConstants.UpdateAction:
+                        orderData.Status = OrderStatus.Active.ToString();
+                        break;
+                    case HelperConstants.DoneAction:
+                        orderData.Status = OrderStatus.Done.ToString();
+                        break;
+                }
+                orderRepo.Update(orderData);
                 _unitOfWork.SaveChanges();
                 return ResponseMessage.SuccessfulMsg;
             }

@@ -45,5 +45,21 @@ namespace Orer.Management.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut("UpdateOrder")]
+        [Authorize]
+        public async Task<IActionResult> UpdateOrder(ReqOrderInfoDto reqOrderInfoDto)
+        {
+            try
+            {
+                var result = await _orderService.UpdateOrder(reqOrderInfoDto);
+                var response = new ApiResponseModel<string>(result, null);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

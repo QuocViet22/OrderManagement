@@ -1,4 +1,6 @@
-﻿namespace OrderManagement.Common.Models.Constants
+﻿using System.ComponentModel;
+
+namespace OrderManagement.Common.Models.Constants
 {
     public class HelperConstants
     {
@@ -17,23 +19,32 @@
         /// Order log message constants
         /// </summary>
         public const string CreateNewOrderLogMsg = "tạo đơn hàng thành công";
-        
-        /// <summary>
-        /// Order status constants
-        /// </summary>
-        public enum OrderStatus {
-            New,
-            Active,
-            Done
-        }
 
         /// <summary>
-        /// Role name constants
+        /// Order action constants
         /// </summary>
-        public enum RoleName
-        {
-            admin,
-            employee
-        }
+        public const string ActiveAction = "Active";
+        public const string UpdateAction = "CheckIn";
+        public const string DoneAction = "Done";
+
+    }
+
+    /// <summary>
+    /// Order status constants
+    /// </summary>
+    public enum OrderStatus
+    {
+        New,
+        Active,
+        Done
+    }
+
+    /// <summary>
+    /// Role name constants
+    /// </summary>
+    public enum RoleName
+    {
+        admin,
+        employee
     }
 }
