@@ -16,6 +16,7 @@ namespace OrerManagement.Api
         {
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
         }
 
         public static void BaseLoggerUsingNLog(this WebApplicationBuilder webApplicationBuilder)

@@ -1,4 +1,5 @@
 ﻿using Arch.EntityFrameworkCore.UnitOfWork;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -27,14 +28,21 @@ namespace OrderManagement.Services.Service
         private readonly ILogger<AccountService> _logger;
 
         /// <summary>
+        /// The mapper
+        /// </summary>
+        private readonly IMapper _mapper;
+
+        /// <summary>
         /// Initialize a new instance of the <see cref="AccountService"/> class.
         /// </summary>
         /// <param name="unitOfWork"></param>
         /// <param name="logger"></param>
-        public AccountService(IUnitOfWork<OrderManagementDbContext> unitOfWork, ILogger<AccountService> logger)
+        /// <param name="mapper"></param>
+        public AccountService(IUnitOfWork<OrderManagementDbContext> unitOfWork, ILogger<AccountService> logger, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _logger = logger;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -52,12 +60,13 @@ namespace OrderManagement.Services.Service
                         predicate: x => x.UserName == accountInfoDto.UserName && x.Password == accountInfoDto.Password,
                         include: i => i
                             .Include(o => o.Role)
+                            .Include(o => o.Employee)
                     );
-
+                var employeeInfoDto = _mapper.Map<ResEmployeeInfoDto>(existedAccount.Employee);
                 if (existedAccount != null)
                 {
                     var accessToken = GetJwtToken(existedAccount);
-                    result = new ResAccountInfoDto(existedAccount.UserName, accessToken);
+                    result = new ResAccountInfoDto(existedAccount.UserName, accessToken, employeeInfoDto);
                 }
 
                 return result;
@@ -77,6 +86,7 @@ namespace OrderManagement.Services.Service
                     new Claim(HelperConstants.UserName, existedAccount.UserName),
                     new Claim(HelperConstants.Role, existedAccount.Role.Name),
                     new Claim(HelperConstants.RoleKey, existedAccount.Role.Key),
+                    new Claim(HelperConstants.EmployeeName, existedAccount.Employee.Name),
                     new Claim(JwtRegisteredClaimNames.Sub, HelperConstants.UserId)
                 };
 
