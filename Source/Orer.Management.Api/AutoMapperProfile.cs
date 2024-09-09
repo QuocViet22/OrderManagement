@@ -38,7 +38,8 @@ namespace OrerManagement.Api
                 .ForMember(x => x.PhoneNumber, options => options.MapFrom(source => source.PhoneNumber))
                 .ForMember(x => x.Address, options => options.MapFrom(source => source.Address))
                 .ForMember(x => x.JobTitle, options => options.MapFrom(source => source.JobTitle))
-                .ForMember(x => x.JobDescription, options => options.MapFrom(source => source.JobDescription));
+                .ForMember(x => x.JobDescription, options => options.MapFrom(source => source.JobDescription))
+                .ForMember(x => x.Signature, options => options.MapFrom(source => source.Signature));
         }
 
         /// <summary>

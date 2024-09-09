@@ -18,13 +18,16 @@ namespace OrderManagement.Common.Models.Constants
         /// <summary>
         /// Order log message constants
         /// </summary>
-        public const string CreateNewOrderLogMsg = "tạo đơn hàng thành công";
+        public const string AddNewOrderLogMsg = "tạo đơn hàng thành công";
+        public const string ActivedOrderLogMsg = "đã chuyển trạng thái đơn hàng thành Active";
+        public const string UpdatedOrderLogMsg = "đã cập nhật thông tin đơn hàng thành công";
+        public const string CompletedOrderLogMsg = "đã hoàn thành đơn hàng";
 
         /// <summary>
         /// Order action constants
         /// </summary>
         public const string ActiveAction = "Active";
-        public const string UpdateAction = "CheckIn";
+        public const string UpdateAction = "Update";
         public const string DoneAction = "Done";
 
     }

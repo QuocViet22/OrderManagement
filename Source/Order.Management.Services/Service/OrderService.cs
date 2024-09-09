@@ -1,5 +1,6 @@
 ﻿using Arch.EntityFrameworkCore.UnitOfWork;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using OrderManagement.Common.Helper;
 using OrderManagement.Common.Models.Constants;
@@ -61,7 +62,7 @@ namespace OrderManagement.Services.Service
 
                 var firstOrderLogData = new ReqOrderLogInfoDto()
                 {
-                    Content = $"{employeeData.Name} {HelperConstants.CreateNewOrderLogMsg}",
+                    Content = $"{employeeData.Name} {HelperConstants.AddNewOrderLogMsg}",
                     CreateBy = $"{employeeData.Name}",
                     CreatedOn = DateTime.Now,
                 };
@@ -94,32 +95,63 @@ namespace OrderManagement.Services.Service
                 var orderRepo = _unitOfWork.GetRepository<Order>();
                 var employeeRepo = _unitOfWork.GetRepository<Employee>();
 
-                var orderData = await orderRepo.GetFirstOrDefaultAsync(
-                        predicate: x => x.Id == reqOrderInfoDto.OrderId
+                var existedOrderData = await orderRepo.GetFirstOrDefaultAsync(
+                        predicate: x => x.Id == reqOrderInfoDto.OrderId,
+                        include: i => i.Include(o => o.Employee)
                     );
 
-                if (orderData == null)
+                if (existedOrderData == null)
                     return ResponseMessage.FailedGetDataMsg;
 
                 switch (reqOrderInfoDto.Action)
                 {
                     case HelperConstants.ActiveAction:
-                        orderData.Status = OrderStatus.Active.ToString();
+                        var activeOrderLogDto = new ReqOrderLogInfoDto()
+                        {
+                            Content = $"{existedOrderData.Employee.Name} {HelperConstants.ActivedOrderLogMsg}",
+                            CreateBy = $"{existedOrderData.Employee.Name}",
+                            CreatedOn = DateTime.Now,
+                        };
+                        var activeOrderLogData = _mapper.Map<OrderLog>(activeOrderLogDto);
+                        existedOrderData.OrderLogs.Add(activeOrderLogData);
+                        existedOrderData.Status = OrderStatus.Active.ToString();
                         break;
                     case HelperConstants.UpdateAction:
-                        orderData.Status = OrderStatus.Active.ToString();
+                        var updatedOrderLogDto = new ReqOrderLogInfoDto()
+                        {
+                            Content = $"{existedOrderData.Employee.Name} {HelperConstants.UpdatedOrderLogMsg}",
+                            CreateBy = $"{existedOrderData.Employee.Name}",
+                            CreatedOn = DateTime.Now,
+                        };
+                        var updateOrderLogData = _mapper.Map<OrderLog>(updatedOrderLogDto);
+                        existedOrderData.OrderLogs.Add(updateOrderLogData);
+                        existedOrderData.CustomerName = reqOrderInfoDto.CustomerName;
+                        existedOrderData.PhoneNumber = reqOrderInfoDto.PhoneNumber;
+                        existedOrderData.Address = reqOrderInfoDto.Address;
+                        existedOrderData.JobTitle = reqOrderInfoDto.JobTitle;
+                        existedOrderData.JobDescription = reqOrderInfoDto.JobDescription;
+                        existedOrderData.Status = OrderStatus.Active.ToString();
                         break;
                     case HelperConstants.DoneAction:
-                        orderData.Status = OrderStatus.Done.ToString();
+                        var completedOrderLogDto = new ReqOrderLogInfoDto()
+                        {
+                            Content = $"{existedOrderData.Employee.Name} {HelperConstants.CompletedOrderLogMsg}",
+                            CreateBy = $"{existedOrderData.Employee.Name}",
+                            CreatedOn = DateTime.Now,
+                        };
+                        var completedOrderLogData = _mapper.Map<OrderLog>(completedOrderLogDto);
+                        existedOrderData.Signature = reqOrderInfoDto.Signature;
+                        existedOrderData.OrderLogs.Add(completedOrderLogData);
+                        existedOrderData.Status = OrderStatus.Done.ToString();
                         break;
                 }
-                orderRepo.Update(orderData);
+                orderRepo.Update(existedOrderData);
                 _unitOfWork.SaveChanges();
                 return ResponseMessage.SuccessfulMsg;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while get data from function AddNewOrder()");
+                _logger.LogError(ex, "Error while get data from function UpdateOrder()");
                 throw;
             }
         }
