@@ -1,4 +1,5 @@
-﻿using OrderManagement.Entities.Entities;
+﻿using OrderManagement.Common.Models.CommonResponseModel;
+using OrderManagement.Entities.Entities;
 using OrderManagement.Entities.Models.ResponseModel;
 
 namespace OrderManagement.Services.Interface
@@ -14,6 +15,6 @@ namespace OrderManagement.Services.Interface
         /// <param name="roleName"></param>
         /// <param name="employeeName"></param>
         /// <returns></returns>
-        public Task<IEnumerable<ResEmployeeInfoDto>> GetListEmployee(string roleName, string employeeName);
+        public Task<IEnumerable<ResEmployeeInfoDto>> GetListEmployee(TokenInfoModel tokenInfo);
     }
 }

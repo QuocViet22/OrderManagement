@@ -53,7 +53,7 @@ namespace Orer.Management.Api.Controllers
                     return BadRequest(ResponseMessage.FailedAuthorizeToken);
                 }
 
-                var result = await _employeeService.GetListEmployee(tokenInfo.RoleName, tokenInfo.EmployeeName);
+                var result = await _employeeService.GetListEmployee(tokenInfo);
                 var response = new ApiResponseModel<IEnumerable<ResEmployeeInfoDto>>(ResponseMessage.SuccessfulMsg, result);
                 return Ok(response);
             }

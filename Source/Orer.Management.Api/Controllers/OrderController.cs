@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using OrderManagement.Common.Models.CommonResponseModel;
 using OrderManagement.Services.Interface;
 using OrderManagement.Entities.Models.RequestModel;
+using OrderManagement.Common.Helper;
+using OrderManagement.Common.Models.Constants;
+using OrderManagement.Entities.Models.ResponseModel;
 
 namespace Orer.Management.Api.Controllers
 {
@@ -54,6 +57,37 @@ namespace Orer.Management.Api.Controllers
             {
                 var result = await _orderService.UpdateOrder(reqOrderInfoDto);
                 var response = new ApiResponseModel<string>(result, null);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("GetListOrder")]
+        [Authorize]
+        public async Task<IActionResult> GetListOrder(ReqListOrderDto reqListOrderDto)
+        {
+            try
+            {
+                // Extract the JWT token from the request header
+                var token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+
+                if (string.IsNullOrEmpty(token))
+                {
+                    return Unauthorized(ResponseMessage.FailedAuthorizeToken);
+                }
+
+                var tokenInfo = JwtHandler.GetInfoFromToken(token);
+
+                if (tokenInfo.RoleName == null || tokenInfo.EmployeeName == null)
+                {
+                    return BadRequest(ResponseMessage.FailedAuthorizeToken);
+                }
+
+                var result = await _orderService.GetListOrder(reqListOrderDto, tokenInfo);
+                var response = new ApiResponseModel<IEnumerable<ResOrderInfoDto>>(ResponseMessage.SuccessfulMsg, result);
                 return Ok(response);
             }
             catch (Exception ex)
