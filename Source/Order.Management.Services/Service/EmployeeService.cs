@@ -52,7 +52,7 @@ namespace OrderManagement.Services.Service
             {
                 var accountRepo = _unitOfWork.GetRepository<Account>();
                 var data = new List<ResEmployeeInfoDto>();
-                if (roleName == HelperConstants.RoleName.admin.ToString())
+                if (roleName == RoleName.admin.ToString())
                 {
                     //Return all records for Admin role
                     var existedData = (await accountRepo.GetPagedListAsync(
@@ -61,7 +61,7 @@ namespace OrderManagement.Services.Service
                              include: i => i.Include(o => o.Employee))).Items;
                     data = _mapper.Map<IEnumerable<ResEmployeeInfoDto>>(existedData.Select(x => x.Employee)).ToList();
                 }
-                else if (roleName == HelperConstants.RoleName.employee.ToString())
+                else if (roleName == RoleName.employee.ToString())
                 {
                     //Return all records for Employee role
                     var existedData = (await accountRepo.GetPagedListAsync(
