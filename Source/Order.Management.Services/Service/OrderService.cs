@@ -2,10 +2,11 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using OrderManagement.Common.Helper;
+using OrderManagement.Common.Models.CommonResponseModel;
 using OrderManagement.Common.Models.Constants;
 using OrderManagement.Entities.Entities;
 using OrderManagement.Entities.Models.RequestModel;
+using OrderManagement.Entities.Models.ResponseModel;
 using OrderManagement.Services.Interface;
 
 namespace OrderManagement.Services.Service
@@ -152,6 +153,52 @@ namespace OrderManagement.Services.Service
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error while get data from function UpdateOrder()");
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get order list
+        /// </summary>
+        /// <param name="reqListOrderDto"></param>
+        /// <param name="tokenInfo"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<ResOrderInfoDto>> GetListOrder(ReqListOrderDto reqListOrderDto, TokenInfoModel tokenInfo)
+        {
+            try
+            {
+                var orderRepo = _unitOfWork.GetRepository<Order>();
+                var result = new List<ResOrderInfoDto>();
+                if (tokenInfo.RoleName == RoleName.admin.ToString())
+                {
+                    //Return all records for Admin role
+                    var data = (await orderRepo.GetPagedListAsync(
+                            pageIndex: reqListOrderDto.PageIndex,
+                            pageSize: reqListOrderDto.PageSize,
+                            include: i => i
+                                        .Include(o => o.Employee)
+                                        .Include(o => o.OrderLogs)
+                        )).Items;
+                    result = _mapper.Map<List<ResOrderInfoDto>>(data);
+                }
+                else if (tokenInfo.RoleName == RoleName.employee.ToString())
+                {
+                    //Return all records for Employee role
+                    var data = (await orderRepo.GetPagedListAsync(
+                            pageIndex: reqListOrderDto.PageIndex,
+                            pageSize: reqListOrderDto.PageSize,
+                            predicate: x => x.Employee.Name == tokenInfo.EmployeeName,
+                            include: i => i
+                                        .Include(o => o.Employee)
+                                        .Include(o => o.OrderLogs)
+                        )).Items;
+                    result = _mapper.Map<List<ResOrderInfoDto>>(data);
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while get data from function GetListOrder()");
                 throw;
             }
         }

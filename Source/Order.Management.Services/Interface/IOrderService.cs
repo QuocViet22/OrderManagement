@@ -1,4 +1,6 @@
-﻿using OrderManagement.Entities.Models.RequestModel;
+﻿using OrderManagement.Common.Models.CommonResponseModel;
+using OrderManagement.Entities.Models.RequestModel;
+using OrderManagement.Entities.Models.ResponseModel;
 
 namespace OrderManagement.Services.Interface
 {
@@ -20,5 +22,12 @@ namespace OrderManagement.Services.Interface
         /// <param name="reqOrderInfoDto"></param>
         /// <returns></returns>
         public Task<string> UpdateOrder(ReqOrderInfoDto reqOrderInfoDto);
+
+        /// <summary>
+        /// Get list order
+        /// </summary>
+        /// <param name="reqListOrderDto"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<ResOrderInfoDto>> GetListOrder(ReqListOrderDto reqListOrderDto, TokenInfoModel tokenInfo);
     }
 }
