@@ -10,7 +10,7 @@ GO
 CREATE TABLE [DB_ORDER_MANAGEMENT_SQL].[Account] (
 	[Id] [uniqueidentifier] DEFAULT NEWID() NOT NULL,
 	[UserName] [nvarchar](50) NOT NULL,
-	[Password] [nvarchar](50) NOT NULL,
+	[Password] [nvarchar](MAX) NOT NULL,
 	[RoleId] [uniqueidentifier] NOT NULL,
 	[EmployeeId] [uniqueidentifier] NOT NULL,
 	CONSTRAINT [PK_Account] PRIMARY KEY CLUSTERED

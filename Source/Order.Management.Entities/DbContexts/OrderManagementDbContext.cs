@@ -33,7 +33,6 @@ public partial class OrderManagementDbContext : DbContext
             entity.ToTable("Account", "DB_ORDER_MANAGEMENT_SQL");
 
             entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
-            entity.Property(e => e.Password).HasMaxLength(50);
             entity.Property(e => e.UserName).HasMaxLength(50);
 
             entity.HasOne(d => d.Employee).WithMany(p => p.Accounts)
