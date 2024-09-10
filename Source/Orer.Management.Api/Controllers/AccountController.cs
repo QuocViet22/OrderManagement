@@ -6,6 +6,8 @@ using OrderManagement.Entities.Models.RequestModel;
 using OrderManagement.Entities.Models.ResponseModel;
 using OrderManagement.Services.Interface;
 using System.IdentityModel.Tokens.Jwt;
+using OrderManagement.Common.Helper;
+using OrderManagement.Services.Service;
 
 namespace Orer.Management.Api.Controllers
 {
@@ -62,9 +64,9 @@ namespace Orer.Management.Api.Controllers
             }
         }
 
-        [HttpGet("Test")]
+        [HttpPost("AddNewAccount")]
         [Authorize]
-        public async Task<IActionResult> Test()
+        public async Task<IActionResult> AddNewAccount(ReqAccountCreationDto reqAccountCreationDto)
         {
             try
             {
@@ -73,25 +75,19 @@ namespace Orer.Management.Api.Controllers
 
                 if (string.IsNullOrEmpty(token))
                 {
-                    return Unauthorized("JWT token is missing.");
+                    return Unauthorized(ResponseMessage.FailedAuthorizeToken);
                 }
 
-                var handler = new JwtSecurityTokenHandler();
-                var jwtToken = handler.ReadJwtToken(token);
-                var roleClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == "RoleKey")?.Value;
+                var tokenInfo = JwtHandler.GetInfoFromToken(token);
 
-                if (roleClaim == "admin")
+                if (tokenInfo.RoleName == null || tokenInfo.EmployeeName == null)
                 {
-                    // Return all records for Admin role
-                    return Ok("Admin");
-                }
-                else if (roleClaim == "employee")
-                {
-                    // Return filtered records for Employee role
-                    return Ok("Employee");
+                    return BadRequest(ResponseMessage.FailedAuthorizeToken);
                 }
 
-                return Forbid("Unauthorized access.");
+                var result = await _accountService.AddNewAccount(tokenInfo, reqAccountCreationDto);
+                var response = new ApiResponseModel<string>(result, null);
+                return Ok(response);
             }
             catch (Exception ex)
             {

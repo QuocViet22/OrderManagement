@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Identity.Client;
 using OrderManagement.Entities.Entities;
 using OrderManagement.Entities.Models.RequestModel;
 using OrderManagement.Entities.Models.ResponseModel;
@@ -16,6 +17,7 @@ namespace OrerManagement.Api
             CreateMapping_ReqOrderInfoDto_Order();
             CreateMapping_ReqOrderLogInfoDto_OrderLog();
             CreateMapping_Order_ResOrderInfoDto();
+            CreateMapping_ReqAccountCreationDto_Account();
         }
 
         /// <summary>
@@ -74,6 +76,16 @@ namespace OrerManagement.Api
                 .ForMember(x => x.EmployeeId, options => options.MapFrom(source => source.EmployeeId))
                 .ForMember(x => x.ResEmployeeInfoDto, options => options.MapFrom(source => source.Employee))
                 .ForMember(x => x.ResOrderLogInfoList, options => options.MapFrom(source => source.OrderLogs.OrderBy(o => o.CreatedOn)));
+        }
+
+        /// <summary>
+        /// Create mapping profile for ReqAccountCreationDto model to Account DB model
+        /// </summary>
+        private void CreateMapping_ReqAccountCreationDto_Account()
+        {
+            CreateMap<ReqAccountCreationDto, Account>()
+                .ForMember(x => x.UserName, options => options.MapFrom(source => source.UserName))
+                .ForMember(x => x.Password, options => options.MapFrom(source => source.Password));       
         }
     }
 }
