@@ -103,8 +103,8 @@ namespace OrderManagement.Services.Service
                                                     predicate: x => x.Name == reqAccountCreationDto.EmployeeName
                                                 );
                     var checkExistedRole = await roleRepo.GetFirstOrDefaultAsync(
-                                predicate: x => x.Key == reqAccountCreationDto.RoleNameKey
-                            );
+                                                    predicate: x => x.Key == reqAccountCreationDto.RoleNameKey
+                                                );
                     if (checkExistedAccount == null && checkExistedEmployee == null && checkExistedRole != null)
                     {
                         var adminRole = await roleRepo.GetFirstOrDefaultAsync(
