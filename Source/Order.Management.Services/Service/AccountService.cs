@@ -99,10 +99,13 @@ namespace OrderManagement.Services.Service
                     var checkExistedAccount = await accountRepo.GetFirstOrDefaultAsync(
                                                     predicate: x => x.UserName == reqAccountCreationDto.UserName
                                                 );
+                    var checkExistedEmployee = await employeeRepo.GetFirstOrDefaultAsync(
+                                                    predicate: x => x.Name == reqAccountCreationDto.EmployeeName
+                                                );
                     var checkExistedRole = await roleRepo.GetFirstOrDefaultAsync(
                                                     predicate: x => x.Key == reqAccountCreationDto.RoleNameKey
                                                 );
-                    if (checkExistedAccount == null && checkExistedRole != null)
+                    if (checkExistedAccount == null && checkExistedEmployee == null && checkExistedRole != null)
                     {
                         var adminRole = await roleRepo.GetFirstOrDefaultAsync(
                                 predicate: x => x.Key == reqAccountCreationDto.RoleNameKey,
