@@ -40,8 +40,8 @@ namespace Orer.Management.Api.Controllers
             try
             {
                 var result = await _orderService.AddNewOrder(reqOrderInfoDto);
-                var response = new ApiResponseModel<string>(result, null);
-                return Ok(response);
+                var response = new ApiResponseModel<string>(result.Result, null);
+                return StatusCode(result.StatusCode, response);
             }
             catch (Exception ex)
             {
@@ -56,8 +56,8 @@ namespace Orer.Management.Api.Controllers
             try
             {
                 var result = await _orderService.UpdateOrder(reqOrderInfoDto);
-                var response = new ApiResponseModel<string>(result, null);
-                return Ok(response);
+                var response = new ApiResponseModel<string>(result.Result, null);
+                return StatusCode(result.StatusCode, response);
             }
             catch (Exception ex)
             {
