@@ -117,6 +117,8 @@ namespace OrderManagement.Services.Service
                         Result = ResponseMessage.FailedGetDataMsg
                     };
 
+                var currentTime = DateTime.Now;
+
                 switch (reqOrderInfoDto.Action)
                 {
                     case HelperConstants.ActiveAction:
@@ -124,7 +126,7 @@ namespace OrderManagement.Services.Service
                         {
                             Content = $"{existedOrderData.Employee.Name} {HelperConstants.ActivedOrderLogMsg}",
                             CreateBy = $"{existedOrderData.Employee.Name}",
-                            CreatedOn = DateTime.Now,
+                            CreatedOn = currentTime,
                         };
                         var activeOrderLogData = _mapper.Map<OrderLog>(activeOrderLogDto);
                         existedOrderData.OrderLogs.Add(activeOrderLogData);
@@ -135,7 +137,7 @@ namespace OrderManagement.Services.Service
                         {
                             Content = $"{existedOrderData.Employee.Name} {HelperConstants.UpdatedOrderLogMsg}",
                             CreateBy = $"{existedOrderData.Employee.Name}",
-                            CreatedOn = DateTime.Now,
+                            CreatedOn = currentTime,
                         };
                         var updateOrderLogData = _mapper.Map<OrderLog>(updatedOrderLogDto);
                         existedOrderData.OrderLogs.Add(updateOrderLogData);
@@ -151,12 +153,23 @@ namespace OrderManagement.Services.Service
                         {
                             Content = $"{existedOrderData.Employee.Name} {HelperConstants.CompletedOrderLogMsg}",
                             CreateBy = $"{existedOrderData.Employee.Name}",
-                            CreatedOn = DateTime.Now,
+                            CreatedOn = currentTime,
                         };
                         var completedOrderLogData = _mapper.Map<OrderLog>(completedOrderLogDto);
                         existedOrderData.Signature = reqOrderInfoDto.Signature;
                         existedOrderData.OrderLogs.Add(completedOrderLogData);
                         existedOrderData.Status = OrderStatus.Done.ToString();
+                        break;
+                    case HelperConstants.CanceledAction:
+                        var canceledOrderLogDto = new ReqOrderLogInfoDto()
+                        {
+                            Content = $"{existedOrderData.Employee.Name} {HelperConstants.CanceledOrderLogMsg}",
+                            CreateBy = $"{existedOrderData.Employee.Name}",
+                            CreatedOn = currentTime,
+                        };
+                        var canceledOrderLogData = _mapper.Map<OrderLog>(canceledOrderLogDto);
+                        existedOrderData.OrderLogs.Add(canceledOrderLogData);
+                        existedOrderData.Status = OrderStatus.Canceled.ToString();
                         break;
                 }
                 orderRepo.Update(existedOrderData);

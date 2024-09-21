@@ -22,6 +22,7 @@ namespace OrderManagement.Common.Models.Constants
         public const string ActivedOrderLogMsg = "đã chuyển trạng thái đơn hàng thành Active";
         public const string UpdatedOrderLogMsg = "đã cập nhật thông tin đơn hàng thành công";
         public const string CompletedOrderLogMsg = "đã hoàn thành đơn hàng";
+        public const string CanceledOrderLogMsg = "đã hủy đơn hàng";
 
         /// <summary>
         /// Order action constants
@@ -29,6 +30,7 @@ namespace OrderManagement.Common.Models.Constants
         public const string ActiveAction = "Active";
         public const string UpdateAction = "Update";
         public const string DoneAction = "Done";
+        public const string CanceledAction = "Canceled";
 
     }
 
@@ -39,7 +41,8 @@ namespace OrderManagement.Common.Models.Constants
     {
         New,
         Active,
-        Done
+        Done,
+        Canceled
     }
 
     /// <summary>
