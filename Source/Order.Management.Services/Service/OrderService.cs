@@ -202,5 +202,34 @@ namespace OrderManagement.Services.Service
                 throw;
             }
         }
+
+        /// <summary>
+        /// Get order detail by ID
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<ResOrderInfoDto> GetOrderDetail(Guid orderId)
+        {
+            try
+            {
+                var orderRepo = _unitOfWork.GetRepository<Order>();
+                var result = new ResOrderInfoDto();
+                //Return record of Admin role
+                var data = await orderRepo.GetFirstOrDefaultAsync(
+                        predicate: x => x.Id == orderId,
+                        include: i => i
+                                    .Include(o => o.Employee)
+                                    .Include(o => o.OrderLogs)
+                    );
+                result = _mapper.Map<ResOrderInfoDto>(data);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while get data from function GetOrderDetail()");
+                throw;
+            }
+        }
     }
 }

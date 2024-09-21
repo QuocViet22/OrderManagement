@@ -29,5 +29,12 @@ namespace OrderManagement.Services.Interface
         /// <param name="reqListOrderDto"></param>
         /// <returns></returns>
         public Task<IEnumerable<ResOrderInfoDto>> GetListOrder(ReqListOrderDto reqListOrderDto, TokenInfoModel tokenInfo);
+
+        /// <summary>
+        /// Get order detail by ID
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        public Task<ResOrderInfoDto> GetOrderDetail(Guid orderId);
     }
 }
