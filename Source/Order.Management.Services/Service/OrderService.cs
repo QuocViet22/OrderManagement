@@ -111,11 +111,14 @@ namespace OrderManagement.Services.Service
                 var employeeRepo = _unitOfWork.GetRepository<Employee>();
 
                 var existedOrderData = await orderRepo.GetFirstOrDefaultAsync(
-                        predicate: x => x.Id == reqOrderInfoDto.OrderId,
-                        include: i => i.Include(o => o.Employee)
+                        predicate: x => x.Id == reqOrderInfoDto.OrderId
                     );
 
-                if (existedOrderData == null)
+                var existedEmployeeData = await employeeRepo.GetFirstOrDefaultAsync(
+                        predicate: x => x.Id == reqOrderInfoDto.EmployeeId
+                    );
+
+                if (existedOrderData == null || existedEmployeeData == null)
                     return new BusinessResponseModel<string>()
                     {
                         StatusCode = 400,
@@ -123,7 +126,7 @@ namespace OrderManagement.Services.Service
                     };
 
                 var currentTime = DateTime.Now;
-                var currentEmployeeName = existedOrderData.Employee.Name;
+                var currentEmployeeName = existedEmployeeData.Name;
 
                 switch (reqOrderInfoDto.Action)
                 {

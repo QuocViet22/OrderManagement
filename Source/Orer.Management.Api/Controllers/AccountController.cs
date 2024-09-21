@@ -43,7 +43,7 @@ namespace Orer.Management.Api.Controllers
 
                 if (data.UserName == null && data.AccessToken == null)
                 {
-                    return StatusCode(500, new ApiResponseModel<string>()
+                    return StatusCode(400, new ApiResponseModel<string>()
                     {
                         Message = ResponseMessage.FailedLoginMsg,
                     });
