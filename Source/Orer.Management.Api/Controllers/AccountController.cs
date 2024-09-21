@@ -5,9 +5,7 @@ using OrderManagement.Common.Models.CommonResponseModel;
 using OrderManagement.Entities.Models.RequestModel;
 using OrderManagement.Entities.Models.ResponseModel;
 using OrderManagement.Services.Interface;
-using System.IdentityModel.Tokens.Jwt;
 using OrderManagement.Common.Helper;
-using OrderManagement.Services.Service;
 
 namespace Orer.Management.Api.Controllers
 {
@@ -81,8 +79,8 @@ namespace Orer.Management.Api.Controllers
                 if (tokenInfo.RoleName == null || tokenInfo.EmployeeName == null)
                     return BadRequest(ResponseMessage.FailedAuthorizeTokenMsg);
                 var result = await _accountService.AddNewAccount(tokenInfo, reqAccountCreationDto);
-                var response = new ApiResponseModel<string>(result, null);
-                return Ok(response);
+                var response = new ApiResponseModel<string>(result.Result, null);
+                return StatusCode(result.StatusCode, response);
             }
             catch (Exception ex)
             {

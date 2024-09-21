@@ -21,6 +21,6 @@ namespace OrderManagement.Services.Interface
         /// </summary>
         /// <param name="reqAccountCreationDto"></param>
         /// <returns></returns>
-        public Task<string> AddNewAccount(TokenInfoModel tokenInfoModel, ReqAccountCreationDto reqAccountCreationDto);
+        public Task<BusinessResponseModel<string>> AddNewAccount(TokenInfoModel tokenInfoModel, ReqAccountCreationDto reqAccountCreationDto);
     }
 }

@@ -84,11 +84,15 @@ namespace OrderManagement.Services.Service
         /// <param name="reqAccountCreationDto"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<string> AddNewAccount(TokenInfoModel tokenInfo, ReqAccountCreationDto reqAccountCreationDto)
+        public async Task<BusinessResponseModel<string>> AddNewAccount(TokenInfoModel tokenInfo, ReqAccountCreationDto reqAccountCreationDto)
         {
             try
             {
-                var result = ResponseMessage.FailedMsg;
+                var result = new BusinessResponseModel<string>()
+                {
+                    StatusCode = 400,
+                    Result = ResponseMessage.FailedMsg
+                };
                 var accountRepo = _unitOfWork.GetRepository<Account>();
                 var roleRepo = _unitOfWork.GetRepository<Role>();
                 var employeeRepo = _unitOfWork.GetRepository<Employee>();
@@ -122,8 +126,20 @@ namespace OrderManagement.Services.Service
                         newAccountData.RoleId = adminRole;
                         accountRepo.Insert(newAccountData);
                         _unitOfWork.SaveChanges();
-                        result = ResponseMessage.SuccessfulMsg;
-                    } else result = "Vui lòng kiểm tra lại thông tin người dùng!";
+                        result = new BusinessResponseModel<string>()
+                        {
+                            StatusCode = 200,
+                            Result = ResponseMessage.SuccessfulMsg
+                        };
+                    }
+                    else
+                    {
+                        result = new BusinessResponseModel<string>()
+                        {
+                            StatusCode = 400,
+                            Result = "Vui lòng kiểm tra lại thông tin người dùng!"
+                        };
+                    };
                 }
                 return result;
             }

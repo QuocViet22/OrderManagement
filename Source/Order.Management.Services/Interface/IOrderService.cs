@@ -14,14 +14,14 @@ namespace OrderManagement.Services.Interface
         /// </summary>
         /// <param name="reqOrderInfoDto"></param>
         /// <returns></returns>
-        public Task<string> AddNewOrder(ReqOrderInfoDto reqOrderInfoDto);
+        public Task<BusinessResponseModel<string>> AddNewOrder(ReqOrderInfoDto reqOrderInfoDto);
 
         /// <summary>
         /// Update order
         /// </summary>
         /// <param name="reqOrderInfoDto"></param>
         /// <returns></returns>
-        public Task<string> UpdateOrder(ReqOrderInfoDto reqOrderInfoDto);
+        public Task<BusinessResponseModel<string>> UpdateOrder(ReqOrderInfoDto reqOrderInfoDto);
 
         /// <summary>
         /// Get list order

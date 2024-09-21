@@ -47,7 +47,7 @@ namespace OrderManagement.Services.Service
         /// <param name="reqOrderInfoDto"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<string> AddNewOrder(ReqOrderInfoDto reqOrderInfoDto)
+        public async Task<BusinessResponseModel<string>> AddNewOrder(ReqOrderInfoDto reqOrderInfoDto)
         {
             try
             {
@@ -59,7 +59,12 @@ namespace OrderManagement.Services.Service
                     );
 
                 if (employeeData == null)
-                    return ResponseMessage.FailedGetDataMsg;
+                    return new BusinessResponseModel<string>()
+                    {
+                        StatusCode = 400,
+                        Result = ResponseMessage.FailedGetDataMsg
+                    };
+                    
 
                 var firstOrderLogData = new ReqOrderLogInfoDto()
                 {
@@ -74,7 +79,11 @@ namespace OrderManagement.Services.Service
                 orderData.OrderLogs.Add(orderLogData);
                 orderRepo.Insert(orderData);
                 _unitOfWork.SaveChanges();
-                return ResponseMessage.SuccessfulMsg;
+                return new BusinessResponseModel<string>()
+                {
+                    StatusCode = 200,
+                    Result = ResponseMessage.SuccessfulMsg
+                };
             }
             catch (Exception ex)
             {
@@ -89,7 +98,7 @@ namespace OrderManagement.Services.Service
         /// <param name="reqOrderInfoDto"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<string> UpdateOrder(ReqOrderInfoDto reqOrderInfoDto)
+        public async Task<BusinessResponseModel<string>> UpdateOrder(ReqOrderInfoDto reqOrderInfoDto)
         {
             try
             {
@@ -102,7 +111,11 @@ namespace OrderManagement.Services.Service
                     );
 
                 if (existedOrderData == null)
-                    return ResponseMessage.FailedGetDataMsg;
+                    return new BusinessResponseModel<string>()
+                    {
+                        StatusCode = 400,
+                        Result = ResponseMessage.FailedGetDataMsg
+                    };
 
                 switch (reqOrderInfoDto.Action)
                 {
@@ -148,7 +161,11 @@ namespace OrderManagement.Services.Service
                 }
                 orderRepo.Update(existedOrderData);
                 _unitOfWork.SaveChanges();
-                return ResponseMessage.SuccessfulMsg;
+                return new BusinessResponseModel<string>()
+                {
+                    StatusCode = 200,
+                    Result = ResponseMessage.SuccessfulMsg
+                };
             }
             catch (Exception ex)
             {
