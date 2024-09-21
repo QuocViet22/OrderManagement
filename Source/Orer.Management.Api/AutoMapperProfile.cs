@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.Identity.Client;
 using OrderManagement.Entities.Entities;
 using OrderManagement.Entities.Models.RequestModel;
 using OrderManagement.Entities.Models.ResponseModel;
@@ -52,7 +51,7 @@ namespace OrerManagement.Api
         {
             CreateMap<ReqOrderLogInfoDto, OrderLog>()
                 .ForMember(x => x.Content, options => options.MapFrom(source => source.Content))
-                .ForMember(x => x.CreateBy, options => options.MapFrom(source => source.CreateBy))
+                .ForMember(x => x.CreatedBy, options => options.MapFrom(source => source.CreatedBy))
                 .ForMember(x => x.CreatedOn, options => options.MapFrom(source => source.CreatedOn));
         }
 
@@ -63,7 +62,7 @@ namespace OrerManagement.Api
         {
             CreateMap<OrderLog, ResOrderLogInfoDto>()
                 .ForMember(x => x.Content, options => options.MapFrom(source => source.Content))
-                .ForMember(x => x.CreateBy, options => options.MapFrom(source => source.CreateBy))
+                .ForMember(x => x.CreateBy, options => options.MapFrom(source => source.CreatedBy))
                 .ForMember(x => x.CreatedOn, options => options.MapFrom(source => source.CreatedOn));
             CreateMap<Order, ResOrderInfoDto>()
                 .ForMember(x => x.Id, options => options.MapFrom(source => source.Id))
@@ -75,7 +74,11 @@ namespace OrerManagement.Api
                 .ForMember(x => x.Signature, options => options.MapFrom(source => source.Signature))
                 .ForMember(x => x.EmployeeId, options => options.MapFrom(source => source.EmployeeId))
                 .ForMember(x => x.ResEmployeeInfoDto, options => options.MapFrom(source => source.Employee))
-                .ForMember(x => x.ResOrderLogInfoList, options => options.MapFrom(source => source.OrderLogs.OrderBy(o => o.CreatedOn)));
+                .ForMember(x => x.ResOrderLogInfoList, options => options.MapFrom(source => source.OrderLogs.OrderBy(o => o.CreatedOn)))
+                .ForMember(x => x.CreatedBy, options => options.MapFrom(source => source.CreatedBy))
+                .ForMember(x => x.CreatedOn, options => options.MapFrom(source => source.CreatedOn))
+                .ForMember(x => x.ModifiedBy, options => options.MapFrom(source => source.ModifiedBy))
+                .ForMember(x => x.ModifiedOn, options => options.MapFrom(source => source.ModifiedOn));
         }
 
         /// <summary>
@@ -85,7 +88,7 @@ namespace OrerManagement.Api
         {
             CreateMap<ReqAccountCreationDto, Account>()
                 .ForMember(x => x.UserName, options => options.MapFrom(source => source.UserName))
-                .ForMember(x => x.Password, options => options.MapFrom(source => source.Password));       
+                .ForMember(x => x.Password, options => options.MapFrom(source => source.Password));
         }
     }
 }

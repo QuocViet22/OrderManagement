@@ -7,7 +7,7 @@
     {
         public string Content { get; set; } = null!;
 
-        public string CreateBy { get; set; } = null!;
+        public string CreatedBy { get; set; } = null!;
 
         public DateTime CreatedOn { get; set; }
     }

@@ -65,18 +65,23 @@ namespace OrderManagement.Services.Service
                         Result = ResponseMessage.FailedGetDataMsg
                     };
                     
-
+                var currentEmployeeName = employeeData.Name;
+                var currentTime = DateTime.Now;
                 var firstOrderLogData = new ReqOrderLogInfoDto()
                 {
-                    Content = $"{employeeData.Name} {HelperConstants.AddNewOrderLogMsg}",
-                    CreateBy = $"{employeeData.Name}",
-                    CreatedOn = DateTime.Now,
+                    Content = $"{currentEmployeeName} {HelperConstants.AddNewOrderLogMsg}",
+                    CreatedBy = $"{currentEmployeeName}",
+                    CreatedOn = currentTime,
                 };
 
                 reqOrderInfoDto.Status = OrderStatus.New.ToString();
                 var orderLogData = _mapper.Map<OrderLog>(firstOrderLogData);
                 var orderData = _mapper.Map<Order>(reqOrderInfoDto);
                 orderData.OrderLogs.Add(orderLogData);
+                orderData.CreatedBy = currentEmployeeName;
+                orderData.CreatedOn = currentTime;
+                orderData.ModifiedBy = currentEmployeeName;
+                orderData.ModifiedOn = currentTime;
                 orderRepo.Insert(orderData);
                 _unitOfWork.SaveChanges();
                 return new BusinessResponseModel<string>()
@@ -118,25 +123,28 @@ namespace OrderManagement.Services.Service
                     };
 
                 var currentTime = DateTime.Now;
+                var currentEmployeeName = existedOrderData.Employee.Name;
 
                 switch (reqOrderInfoDto.Action)
                 {
                     case HelperConstants.ActiveAction:
                         var activeOrderLogDto = new ReqOrderLogInfoDto()
                         {
-                            Content = $"{existedOrderData.Employee.Name} {HelperConstants.ActivedOrderLogMsg}",
-                            CreateBy = $"{existedOrderData.Employee.Name}",
+                            Content = $"{currentEmployeeName} {HelperConstants.ActivedOrderLogMsg}",
+                            CreatedBy = $"{currentEmployeeName}",
                             CreatedOn = currentTime,
                         };
                         var activeOrderLogData = _mapper.Map<OrderLog>(activeOrderLogDto);
                         existedOrderData.OrderLogs.Add(activeOrderLogData);
+                        existedOrderData.ModifiedBy = currentEmployeeName;
+                        existedOrderData.ModifiedOn = currentTime;
                         existedOrderData.Status = OrderStatus.Active.ToString();
                         break;
                     case HelperConstants.UpdateAction:
                         var updatedOrderLogDto = new ReqOrderLogInfoDto()
                         {
-                            Content = $"{existedOrderData.Employee.Name} {HelperConstants.UpdatedOrderLogMsg}",
-                            CreateBy = $"{existedOrderData.Employee.Name}",
+                            Content = $"{currentEmployeeName} {HelperConstants.UpdatedOrderLogMsg}",
+                            CreatedBy = $"{currentEmployeeName}",
                             CreatedOn = currentTime,
                         };
                         var updateOrderLogData = _mapper.Map<OrderLog>(updatedOrderLogDto);
@@ -146,29 +154,35 @@ namespace OrderManagement.Services.Service
                         existedOrderData.Address = reqOrderInfoDto.Address;
                         existedOrderData.JobTitle = reqOrderInfoDto.JobTitle;
                         existedOrderData.JobDescription = reqOrderInfoDto.JobDescription;
+                        existedOrderData.ModifiedBy = currentEmployeeName;
+                        existedOrderData.ModifiedOn = currentTime;
                         existedOrderData.Status = OrderStatus.Active.ToString();
                         break;
                     case HelperConstants.DoneAction:
                         var completedOrderLogDto = new ReqOrderLogInfoDto()
                         {
-                            Content = $"{existedOrderData.Employee.Name} {HelperConstants.CompletedOrderLogMsg}",
-                            CreateBy = $"{existedOrderData.Employee.Name}",
+                            Content = $"{currentEmployeeName} {HelperConstants.CompletedOrderLogMsg}",
+                            CreatedBy = $"{currentEmployeeName}",
                             CreatedOn = currentTime,
                         };
                         var completedOrderLogData = _mapper.Map<OrderLog>(completedOrderLogDto);
                         existedOrderData.Signature = reqOrderInfoDto.Signature;
                         existedOrderData.OrderLogs.Add(completedOrderLogData);
+                        existedOrderData.ModifiedBy = currentEmployeeName;
+                        existedOrderData.ModifiedOn = currentTime;
                         existedOrderData.Status = OrderStatus.Done.ToString();
                         break;
                     case HelperConstants.CanceledAction:
                         var canceledOrderLogDto = new ReqOrderLogInfoDto()
                         {
-                            Content = $"{existedOrderData.Employee.Name} {HelperConstants.CanceledOrderLogMsg}",
-                            CreateBy = $"{existedOrderData.Employee.Name}",
+                            Content = $"{currentEmployeeName} {HelperConstants.CanceledOrderLogMsg}",
+                            CreatedBy = $"{currentEmployeeName}",
                             CreatedOn = currentTime,
                         };
                         var canceledOrderLogData = _mapper.Map<OrderLog>(canceledOrderLogDto);
                         existedOrderData.OrderLogs.Add(canceledOrderLogData);
+                        existedOrderData.ModifiedBy = currentEmployeeName;
+                        existedOrderData.ModifiedOn = currentTime;
                         existedOrderData.Status = OrderStatus.Canceled.ToString();
                         break;
                 }
