@@ -163,7 +163,7 @@ namespace OrderManagement.Services.Service
                 _unitOfWork.SaveChanges();
                 return new BusinessResponseModel<string>()
                 {
-                    StatusCode = 400,
+                    StatusCode = 200,
                     Result = ResponseMessage.SuccessfulMsg
                 };
             }
