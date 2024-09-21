@@ -76,14 +76,14 @@ namespace Orer.Management.Api.Controllers
 
                 if (string.IsNullOrEmpty(token))
                 {
-                    return Unauthorized(ResponseMessage.FailedAuthorizeToken);
+                    return Unauthorized(ResponseMessage.FailedAuthorizeTokenMsg);
                 }
 
                 var tokenInfo = JwtHandler.GetInfoFromToken(token);
 
                 if (tokenInfo.RoleName == null || tokenInfo.EmployeeName == null)
                 {
-                    return BadRequest(ResponseMessage.FailedAuthorizeToken);
+                    return BadRequest(ResponseMessage.FailedAuthorizeTokenMsg);
                 }
 
                 var result = await _orderService.GetListOrder(reqListOrderDto, tokenInfo);
@@ -106,7 +106,7 @@ namespace Orer.Management.Api.Controllers
                 var result = await _orderService.GetOrderDetail(orderGuid);
                 if (result == null)
                 {
-                    var notFoundResponse = new ApiResponseModel<string>("Không tìm thấy đơn!", null);
+                    var notFoundResponse = new ApiResponseModel<string>(ResponseMessage.FailedToGetOrderMsg, null);
                     return StatusCode(500, notFoundResponse);
                 }
                 var response = new ApiResponseModel<ResOrderInfoDto>(ResponseMessage.SuccessfulMsg, result);
@@ -114,7 +114,7 @@ namespace Orer.Management.Api.Controllers
             }
             catch (FormatException)
             {
-                var response = new ApiResponseModel<string>("ID của đơn không hợp lệ!", null);
+                var response = new ApiResponseModel<string>(ResponseMessage.InvalidOrderIdMsg, null);
                 return BadRequest(response);
             }
             catch (Exception ex)

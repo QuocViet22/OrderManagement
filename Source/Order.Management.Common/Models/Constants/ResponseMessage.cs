@@ -11,6 +11,8 @@
         public const string SuccessfulMsg = "Thành công!";
         public const string FailedMsg = "Thất bại!";
         public const string FailedGetDataMsg = "Không tìm thấy thông tin!";
-        public const string FailedAuthorizeToken = "Thông tin access token không hợp lệ!";
+        public const string FailedAuthorizeTokenMsg = "Thông tin access token không hợp lệ!";
+        public const string FailedToGetOrderMsg = "Không tìm thấy đơn!";
+        public const string InvalidOrderIdMsg = "ID của đơn không hợp lệ!";
     }
 }

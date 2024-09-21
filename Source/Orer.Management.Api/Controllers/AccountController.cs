@@ -74,17 +74,12 @@ namespace Orer.Management.Api.Controllers
                 var token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
 
                 if (string.IsNullOrEmpty(token))
-                {
-                    return Unauthorized(ResponseMessage.FailedAuthorizeToken);
-                }
+                    return Unauthorized(ResponseMessage.FailedAuthorizeTokenMsg);
 
                 var tokenInfo = JwtHandler.GetInfoFromToken(token);
 
                 if (tokenInfo.RoleName == null || tokenInfo.EmployeeName == null)
-                {
-                    return BadRequest(ResponseMessage.FailedAuthorizeToken);
-                }
-
+                    return BadRequest(ResponseMessage.FailedAuthorizeTokenMsg);
                 var result = await _accountService.AddNewAccount(tokenInfo, reqAccountCreationDto);
                 var response = new ApiResponseModel<string>(result, null);
                 return Ok(response);
