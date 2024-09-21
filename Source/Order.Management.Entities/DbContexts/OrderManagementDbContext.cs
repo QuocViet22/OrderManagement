@@ -69,6 +69,8 @@ public partial class OrderManagementDbContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.Status).HasMaxLength(250);
+            entity.Property(e => e.CreatedBy).HasMaxLength(250);
+            entity.Property(e => e.ModifiedBy).HasMaxLength(250);
 
             entity.HasOne(d => d.Employee).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.EmployeeId)
@@ -81,7 +83,7 @@ public partial class OrderManagementDbContext : DbContext
             entity.ToTable("OrderLog", "DB_ORDER_MANAGEMENT_SQL");
 
             entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
-            entity.Property(e => e.CreateBy).HasMaxLength(250);
+            entity.Property(e => e.CreatedBy).HasMaxLength(250);
 
             entity.HasOne(d => d.Order).WithMany(p => p.OrderLogs)
                 .HasForeignKey(d => d.OrderId)

@@ -25,6 +25,14 @@ namespace OrderManagement.Entities.Models.ResponseModel
 
         public Guid EmployeeId { get; set; }
 
+        public string CreatedBy { get; set; } = null!;
+
+        public DateTime CreatedOn { get; set; }
+
+        public string ModifiedBy { get; set; } = null!;
+
+        public DateTime ModifiedOn { get; set; }
+
         public ResEmployeeInfoDto ResEmployeeInfoDto { get; set; } = null!;
 
         public List<ResOrderLogInfoDto> ResOrderLogInfoList { get; set; } = new List<ResOrderLogInfoDto>();

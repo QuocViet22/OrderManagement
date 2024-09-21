@@ -50,7 +50,11 @@ CREATE TABLE [DB_ORDER_MANAGEMENT_SQL].[Order] (
 	[JobDescription] [nvarchar](MAX) NULL,
 	[Status] [nvarchar](250) NOT NULL,
 	[Signature] [nvarchar](MAX) NULL,
-	[EmployeeId] [uniqueidentifier] NOT NULL
+	[CreatedBy] [nvarchar] (250) NOT NULL,
+	[CreatedOn] [datetime] NOT NULL,
+	[ModifiedBy] [nvarchar] (250) NOT NULL,
+	[ModifiedOn] [datetime] NOT NULL,	
+	[EmployeeId] [uniqueidentifier] NOT NULL,
 	CONSTRAINT [PK_Order] PRIMARY KEY CLUSTERED
 (
 	[Id] ASC
@@ -65,7 +69,7 @@ SET QUOTED_IDENTIFIER ON
 CREATE TABLE [DB_ORDER_MANAGEMENT_SQL].[OrderLog] (
 	[Id] [uniqueidentifier] DEFAULT NEWID() NOT NULL,
 	[Content] [nvarchar](MAX) NOT NULL,
-	[CreateBy] [nvarchar] (250) NOT NULL,
+	[CreatedBy] [nvarchar] (250) NOT NULL,
 	[CreatedOn] [datetime] NOT NULL,
 	[OrderId] [uniqueidentifier] NOT NULL
 	CONSTRAINT [PK_OrderLog] PRIMARY KEY CLUSTERED
