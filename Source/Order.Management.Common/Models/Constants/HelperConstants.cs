@@ -30,7 +30,7 @@ namespace OrderManagement.Common.Models.Constants
         public const string ActiveAction = "Active";
         public const string UpdateAction = "Update";
         public const string DoneAction = "Done";
-        public const string CanceledAction = "Canceled";
+        public const string CancelledAction = "Cancelled";
 
     }
 

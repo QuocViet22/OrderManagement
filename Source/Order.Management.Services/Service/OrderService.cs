@@ -175,7 +175,7 @@ namespace OrderManagement.Services.Service
                         existedOrderData.ModifiedOn = currentTime;
                         existedOrderData.Status = OrderStatus.Done.ToString();
                         break;
-                    case HelperConstants.CanceledAction:
+                    case HelperConstants.CancelledAction:
                         var canceledOrderLogDto = new ReqOrderLogInfoDto()
                         {
                             Content = $"{currentEmployeeName} {HelperConstants.CanceledOrderLogMsg}",
@@ -224,7 +224,8 @@ namespace OrderManagement.Services.Service
                             pageSize: reqListOrderDto.PageSize,
                             include: i => i
                                         .Include(o => o.Employee)
-                                        .Include(o => o.OrderLogs)
+                                        .Include(o => o.OrderLogs),
+                            orderBy: x => x.OrderByDescending(o => o.CreatedOn)
                         )).Items;
                     result = _mapper.Map<List<ResOrderInfoDto>>(data);
                 }
@@ -237,7 +238,8 @@ namespace OrderManagement.Services.Service
                             predicate: x => x.Employee.Name == tokenInfo.EmployeeName,
                             include: i => i
                                         .Include(o => o.Employee)
-                                        .Include(o => o.OrderLogs)
+                                        .Include(o => o.OrderLogs),
+                            orderBy: x => x.OrderByDescending(o => o.CreatedOn)
                         )).Items;
                     result = _mapper.Map<List<ResOrderInfoDto>>(data);
                 }
