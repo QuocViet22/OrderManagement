@@ -2,12 +2,14 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using OrderManagement.Common.Helper;
 using OrderManagement.Common.Models.CommonResponseModel;
 using OrderManagement.Common.Models.Constants;
 using OrderManagement.Entities.Entities;
 using OrderManagement.Entities.Models.RequestModel;
 using OrderManagement.Entities.Models.ResponseModel;
 using OrderManagement.Services.Interface;
+using System.Linq.Expressions;
 
 namespace OrderManagement.Services.Service
 {
@@ -186,7 +188,7 @@ namespace OrderManagement.Services.Service
                         existedOrderData.OrderLogs.Add(canceledOrderLogData);
                         existedOrderData.ModifiedBy = currentEmployeeName;
                         existedOrderData.ModifiedOn = currentTime;
-                        existedOrderData.Status = OrderStatus.Canceled.ToString();
+                        existedOrderData.Status = OrderStatus.Cancelled.ToString();
                         break;
                 }
                 orderRepo.Update(existedOrderData);
@@ -216,33 +218,17 @@ namespace OrderManagement.Services.Service
             {
                 var orderRepo = _unitOfWork.GetRepository<Order>();
                 var result = new List<ResOrderInfoDto>();
-                if (tokenInfo.RoleName == RoleName.admin.ToString())
-                {
-                    //Return all records for Admin role
-                    var data = (await orderRepo.GetPagedListAsync(
-                            pageIndex: reqListOrderDto.PageIndex,
-                            pageSize: reqListOrderDto.PageSize,
-                            include: i => i
-                                        .Include(o => o.Employee)
-                                        .Include(o => o.OrderLogs),
-                            orderBy: x => x.OrderByDescending(o => o.CreatedOn)
-                        )).Items;
-                    result = _mapper.Map<List<ResOrderInfoDto>>(data);
-                }
-                else if (tokenInfo.RoleName == RoleName.employee.ToString())
-                {
-                    //Return all records for Employee role
-                    var data = (await orderRepo.GetPagedListAsync(
-                            pageIndex: reqListOrderDto.PageIndex,
-                            pageSize: reqListOrderDto.PageSize,
-                            predicate: x => x.Employee.Name == tokenInfo.EmployeeName,
-                            include: i => i
-                                        .Include(o => o.Employee)
-                                        .Include(o => o.OrderLogs),
-                            orderBy: x => x.OrderByDescending(o => o.CreatedOn)
-                        )).Items;
-                    result = _mapper.Map<List<ResOrderInfoDto>>(data);
-                }
+                var orderPredicate = GetOrderPredicate(reqListOrderDto, tokenInfo);
+                var data = (await orderRepo.GetPagedListAsync(
+                        pageIndex: reqListOrderDto.PageIndex,
+                        pageSize: reqListOrderDto.PageSize,
+                        predicate: orderPredicate,
+                        include: i => i
+                                    .Include(o => o.Employee)
+                                    .Include(o => o.OrderLogs),
+                        orderBy: x => x.OrderByDescending(o => o.CreatedOn)
+                    )).Items;
+                result = _mapper.Map<List<ResOrderInfoDto>>(data);
                 return result;
             }
             catch (Exception ex)
@@ -280,5 +266,36 @@ namespace OrderManagement.Services.Service
                 throw;
             }
         }
+
+        /// private service
+        #region
+        /// <summary>
+        /// private predicate
+        /// </summary>
+        /// <param name="reqListOrderDto"></param>
+        /// <param name="tokenInfo"></param>
+        /// <returns></returns>
+        private static Expression<Func<Order, bool>> GetOrderPredicate(ReqListOrderDto reqListOrderDto, TokenInfoModel tokenInfo)
+        {
+            var dateFromValue = StringUltility.ConvertStringToDateTime(reqListOrderDto.DateFrom);
+            var dateToValue = StringUltility.ConvertStringToDateTime(reqListOrderDto.DateTo);
+            return x =>
+                ( // By Time
+                 (!dateFromValue.HasValue && !dateToValue.HasValue)
+                 || (dateFromValue.HasValue && !dateToValue.HasValue && x.CreatedOn >= dateFromValue)
+                 || (!dateFromValue.HasValue && dateToValue.HasValue && x.CreatedOn <= dateToValue)
+                 || (dateFromValue.HasValue && dateToValue.HasValue && x.CreatedOn >= dateFromValue && x.CreatedOn <= dateToValue)
+                )
+                && ( // By Status
+                  reqListOrderDto.Status == null
+                  || !reqListOrderDto.Status.Any()
+                  || reqListOrderDto.Status.Contains(x.Status)
+                )
+                && ( // Is Employee role
+                  tokenInfo.RoleName == RoleName.admin.ToString()
+                  || tokenInfo.RoleName == RoleName.employee.ToString() && x.Employee.Name == tokenInfo.EmployeeName
+                );
+        }
+        #endregion
     }
 }

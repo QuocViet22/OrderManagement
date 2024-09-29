@@ -42,7 +42,7 @@ namespace OrderManagement.Common.Models.Constants
         New,
         Active,
         Done,
-        Canceled
+        Cancelled
     }
 
     /// <summary>
